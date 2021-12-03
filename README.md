@@ -36,18 +36,17 @@ Outras tecnologias interessantes que foram implementadas:
 $ yarn install
 ```
 
-*Caso não funcione, tente: *
-
+*Caso não funcione, tente:*
 ``` bash
 $ npm install yarn
 ```
 
-*E, em seguida, o comando supracitado*
+*E, em seguida, o comando citado anteriormente.*
 
  
 ## Uso
 
-*Para executar o projeto, abra um emulador de android e rode o seguinte comando:*
+*Com as dependências instaladas, para executar o projeto, abra um emulador de android e rode o seguinte comando:*
 
 ``` bash
 $ expo start android
