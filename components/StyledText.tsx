@@ -1,7 +1,18 @@
-import * as React from 'react';
+import React from "react";
+import { StyleSheet, Text, ImageBackground, View } from "react-native";
 
-import { Text, TextProps } from './Themed';
+const styles = StyleSheet.create({
+  quoteText: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    textAlign: "center",
+    justifyContent: "center",
+    height: 80,
+    color: "white",
+    fontFamily: 'serif',
+    fontSize: 16
+  },
+});
 
-export function MonoText(props: TextProps) {
-  return <Text {...props} style={[props.style, { fontFamily: 'space-mono' }]} />;
-}
+export default styles;

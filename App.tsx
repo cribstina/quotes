@@ -1,15 +1,25 @@
 import React from 'react';
 import { Dimensions, FlatList, Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import axios from 'axios';
 
 import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import api from "./config/pexels";
+import api from "./config/pexels"; //img api
+import getQuotes from './config/quotes'; //quote api
+import styles from './components/StyledText';
 
+interface quote {
+  text: string;
+  author: string;
+}
+
+
+/* ----- manipulating images ----- */
 const img_size = 80;
 const spacing = 5;
 const { width, height } = Dimensions.get('screen');
 
+//get images from api
 const fetchImagesFromPexels = async () => {
   const data = await fetch(api.API_URL, {
     headers: {
@@ -24,9 +34,29 @@ const fetchImagesFromPexels = async () => {
 
 
 export default function App() {
-  const [images, setImages] = React.useState(null);
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  //images state
+  const [images, setImages] = React.useState(null);
+
+  //quotes states
+  const [quotes, setQuotes] = React.useState([]);
+  const [ranQuote, setRanQuote] = React.useState<quote>();
+  
+  const getQuotesData = () => {
+    getQuotes()
+      .then((result: any) => {
+        setQuotes(result);
+      })
+      .catch((err: any) => {
+        console.log("erro", err);
+      });
+  };
+
+  function randomQuote() {
+    //select random quote id from 0 to 1642
+    const quoteId = Math.floor(Math.random() * 1642);
+    setRanQuote(quotes[quoteId]);
+  }
 
   React.useEffect(() => {
       const fetchImages = async () => {
@@ -36,8 +66,14 @@ export default function App() {
       }
 
       fetchImages();
+      getQuotesData();
+      randomQuote();
 
   }, []);
+
+  
+
+  /* ----- image manipulation ----- */
 
   const topRef = React.useRef();
   const thumbRef = React.useRef();
@@ -45,6 +81,7 @@ export default function App() {
 
   const scrollToActiveIndex = (index: any) => {
     setActiveIndex(index)
+    randomQuote();
     topRef?.current?.scrollToOffset({
       offset: index * width,
       animated: true
@@ -66,12 +103,10 @@ export default function App() {
       }
   }
 
-  if (!images) {
+  if (!isLoadingComplete) {
     return null;
   } else {
-
-    
-    console.log(images)
+    console.log(ranQuote)
     return (
       <SafeAreaProvider>
         
@@ -87,12 +122,18 @@ export default function App() {
           }}
           renderItem={({ item }) => {
             return (
-              <View style={{ width, height }}>
+              <View style={{ width, height, justifyContent: 'center' }}>
                 <Image
                   source={{ uri: item.src.portrait }}
                   style={[StyleSheet.absoluteFillObject]}
                 />
-              </View>
+                <Text style={styles.quoteText}>
+                  "{ranQuote && ranQuote.text}"
+                </Text>
+                <Text style={styles.quoteText}>
+                  {ranQuote && ranQuote.author}
+                </Text>
+              </View> 
             );
           }}
         />
