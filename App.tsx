@@ -6,11 +6,9 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import api from "./config/api";
 
-/* ----- meu código ----- */
 const img_size = 80;
 const spacing = 5;
 const { width, height } = Dimensions.get('screen');
-
 
 const fetchImagesFromPexels = async () => {
   const data = await fetch(api.API_URL, {
