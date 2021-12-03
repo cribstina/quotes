@@ -57,7 +57,7 @@ export default function App() {
           
             return <View style={{width, height}}>
               <Image
-                source={{uri: item.src.landscape}}
+                source={{uri: item.src.portrait}}
                 style={[StyleSheet.absoluteFillObject]} 
                 />
               </View>
