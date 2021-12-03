@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     height: 80,
     color: "white",
     fontFamily: 'serif',
-    fontSize: 16
+    fontSize: 16,
   },
 });
 

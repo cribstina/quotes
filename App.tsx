@@ -56,6 +56,7 @@ export default function App() {
     //select random quote id from 0 to 1642
     const quoteId = Math.floor(Math.random() * 1642);
     setRanQuote(quotes[quoteId]);
+    
   }
 
   React.useEffect(() => {
@@ -122,7 +123,7 @@ export default function App() {
           }}
           renderItem={({ item }) => {
             return (
-              <View style={{ width, height, justifyContent: 'center' }}>
+              <View style={{ width, height, padding: spacing, justifyContent: 'center' }}>
                 <Image
                   source={{ uri: item.src.portrait }}
                   style={[StyleSheet.absoluteFillObject]}
