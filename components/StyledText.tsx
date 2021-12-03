@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 80,
     color: "white",
-    fontFamily: 'serif',
-    fontSize: 16,
+    fontFamily: "Optima",
+    fontSize: 20,
   },
 });
 
