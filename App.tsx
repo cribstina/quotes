@@ -119,9 +119,11 @@ export default function App() {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           onMomentumScrollEnd={(ev) => {
+            
             setActiveIndex(ev.nativeEvent.contentOffset.x / width);
           }}
           renderItem={({ item }) => {
+            
             return (
               <View style={{ width, height, padding: spacing, justifyContent: 'center' }}>
                 <Image
