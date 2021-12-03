@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import api from "./config/api";
+import api from "./config/pexels";
 
 const img_size = 80;
 const spacing = 5;
